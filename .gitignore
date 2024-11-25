@@ -396,3 +396,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/BlankPro/Saved
+/BlankPro/Plugins/EditorExtenTool/Binaries/Win64
+/BlankPro/Plugins/CustomAsset/Intermediate/Build/Win64/UnrealEditor/Inc/CustomAsset/UHT
+/BlankPro/Plugins/EditorExtenTool/Intermediate/Build/Win64/UnrealEditor/Inc/EditorExtenTool/UHT
+/BlankPro/Plugins/CustomAsset/Binaries/Win64
+/BlankPro/Intermediate
+/BlankPro/Binaries/Win64
+/BlankPro/.idea/.idea.BlankPro.dir/.idea
