@@ -3,16 +3,21 @@
 // 在注册函数与注销函数中处理Detail面板
 void FMyAssetEditorToolkit::RegisterTabSpawners(const TSharedRef<FTabManager>& InTabManager)
 {
+	WorkspaceMenuCategory = InTabManager->AddLocalWorkspaceMenuCategory(INVTEXT("Asset Editor"));
 	FAssetEditorToolkit::RegisterTabSpawners(InTabManager);
-	InTabManager->RegisterTabSpawner(FName("MyAssetPropertyTab"), FOnSpawnTab::CreateRaw(this, &FMyAssetEditorToolkit::SpawnDetailTab));
+	InTabManager->RegisterTabSpawner(FName("MyAssetPropertyTab"),
+	                                 FOnSpawnTab::CreateRaw(this, &FMyAssetEditorToolkit::SpawnDetailTab))
+	            .SetGroup(WorkspaceMenuCategory.ToSharedRef());
+
 	InTabManager->RegisterTabSpawner(FName("MyAssetGraphEditorTab"), FOnSpawnTab::CreateLambda(
-		                               [&](const FSpawnTabArgs& SpawnTabArgs)
-		                               {
-			                               return SNew(SDockTab)
-				                               [
-					                               SNew(SGraphEditor).GraphToEdit(EdGraph)
-				                               ];
-		                               }));
+		                                 [&](const FSpawnTabArgs& SpawnTabArgs)
+		                                 {
+			                                 return SNew(SDockTab)
+				                                 [
+					                                 SNew(SGraphEditor).GraphToEdit(EdGraph)
+				                                 ];
+		                                 }))
+	            .SetGroup(WorkspaceMenuCategory.ToSharedRef());
 }
 
 void FMyAssetEditorToolkit::UnregisterTabSpawners(const TSharedRef<FTabManager>& InTabManager)
